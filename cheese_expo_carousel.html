@@ -16,7 +16,7 @@
         .slide { display: none; width: 100%; height: 100%; position: relative; animation: fadeIn 0.5s ease-in; }
         .slide.active { display: flex; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slide img { width: 100%; height: 100%; object-fit: contain; background: #FDB913; }
         .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%); padding: 50px 30px 30px; color: white; min-height: 45%; display: flex; flex-direction: column; justify-content: flex-end; }
         .slide-title { font-size: 26px; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
         .slide-subtitle { font-size: 15px; opacity: 0.95; font-weight: 300; }
@@ -123,7 +123,7 @@
                 💾 Скачать текущий слайд PNG
             </button>
             <div class="info-box">
-                <strong>Готово!</strong> Карусель работает полностью автономно без интернета. Нажми для скачивания слайда для Instagram (1080×1080px).
+                <strong>✨ Улучшено!</strong> Картинки больше не деформируются! Сохраняются с золотистыми границами (1080×1080px для Instagram).
             </div>
         </div>
     </div>
@@ -160,25 +160,54 @@
         function downloadCurrentSlide() {
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
+            
             canvas.width = 1080;
             canvas.height = 1080;
+            
+            // Заливаем фон золотым цветом Cheese Expo
+            ctx.fillStyle = '#FDB913';
+            ctx.fillRect(0, 0, 1080, 1080);
             
             const img = new Image();
             const slideImg = slides[currentIndex].querySelector('img');
             
             img.onload = function() {
-                ctx.drawImage(img, 0, 0, 1080, 1080);
+                // Вычисляем размеры для сохранения пропорций (contain)
+                const imgRatio = img.width / img.height;
+                const canvasRatio = 1; // квадрат 1:1
                 
+                let drawWidth, drawHeight, drawX, drawY;
+                
+                if (imgRatio > canvasRatio) {
+                    // Изображение шире (ландшафт)
+                    drawWidth = 1080;
+                    drawHeight = 1080 / imgRatio;
+                    drawX = 0;
+                    drawY = (1080 - drawHeight) / 2;
+                } else {
+                    // Изображение выше (портрет)
+                    drawHeight = 1080;
+                    drawWidth = 1080 * imgRatio;
+                    drawX = (1080 - drawWidth) / 2;
+                    drawY = 0;
+                }
+                
+                // Рисуем изображение без деформации
+                ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+                
+                // Рисуем градиент оверлей
                 const gradient = ctx.createLinearGradient(0, 500, 0, 1080);
                 gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
                 gradient.addColorStop(1, 'rgba(0, 0, 0, 0.85)');
                 ctx.fillStyle = gradient;
                 ctx.fillRect(0, 500, 1080, 580);
                 
+                // Рисуем бейдж
                 ctx.fillStyle = '#FDB913';
                 ctx.font = 'bold 20px Segoe UI';
                 ctx.fillText('СПИКЕР ' + slideData[currentIndex].speaker, 40, 60);
                 
+                // Заголовок
                 ctx.fillStyle = 'white';
                 ctx.font = 'bold 48px Segoe UI';
                 
@@ -198,10 +227,12 @@
                 }
                 ctx.fillText(line, 40, titleY);
                 
+                // Подзаголовок
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
                 ctx.font = '20px Segoe UI';
                 ctx.fillText(slideData[currentIndex].subtitle, 40, titleY + 60);
                 
+                // Скачиваем
                 canvas.toBlob(function(blob) {
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
