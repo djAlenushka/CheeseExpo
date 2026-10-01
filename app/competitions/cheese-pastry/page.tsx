@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import CTASection from '@/components/CTASection'
 
 export const metadata = {
@@ -124,9 +125,9 @@ export default function CheesePastryPage() {
                   <li>Подготовить образцы к конкурсу (доставка 18 мая)</li>
                 </ol>
                 <div className="mt-6">
-                  <button className="button-primary">
+                  <Link href="/register?type=competitor&competition=cheese-pastry" className="button-primary">
                     Подать работы в конкурс
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

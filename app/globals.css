@@ -45,11 +45,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .button-primary {
-  @apply px-6 py-3 bg-black text-white font-semibold rounded hover:bg-gray-800 transition;
+  @apply inline-block text-center px-6 py-3 bg-black text-white font-semibold rounded hover:bg-gray-800 transition;
 }
 
 .button-secondary {
-  @apply px-6 py-3 border-2 border-gold text-gold font-semibold rounded hover:bg-gold hover:text-black transition;
+  @apply inline-block text-center px-6 py-3 border-2 border-gold text-gold font-semibold rounded hover:bg-gold hover:text-black transition;
 }
 
 .card {
