@@ -23,7 +23,7 @@ export default function Header() {
           <Link href="/#competitions" className="hover:text-gold transition">Конкурсы</Link>
           <Link href="/#participate" className="hover:text-gold transition">Участие</Link>
           <Link href="/contacts" className="hover:text-gold transition">Контакты</Link>
-          <button className="button-primary">Регистрация</button>
+          <Link href="/register" className="button-primary">Регистрация</Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -45,7 +45,7 @@ export default function Header() {
             <Link href="/#competitions" className="hover:text-gold transition">Конкурсы</Link>
             <Link href="/#participate" className="hover:text-gold transition">Участие</Link>
             <Link href="/contacts" className="hover:text-gold transition">Контакты</Link>
-            <button className="button-primary w-full">Регистрация</button>
+            <Link href="/register" className="button-primary w-full text-center" onClick={() => setIsOpen(false)}>Регистрация</Link>
           </div>
         </div>
       )}

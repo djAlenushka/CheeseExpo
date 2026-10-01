@@ -34,7 +34,8 @@ export enum ParticipantType {
   PROFESSIONAL = 'professional',
   PRODUCER = 'producer',
   STUDENT = 'student',
-  MEDIA = 'media'
+  MEDIA = 'media',
+  COMPETITOR = 'competitor'
 }
 
 export enum CompetitionType {

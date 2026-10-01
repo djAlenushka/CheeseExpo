@@ -1,53 +1,9 @@
 import Link from 'next/link'
 import CompetitionCard from '@/components/CompetitionCard'
 import CTASection from '@/components/CTASection'
+import { competitions } from '@/lib/competitions'
 
 export default function Home() {
-  const competitions = [
-    {
-      id: 'cheese-experts',
-      title: '1-й Всероссийский конкурс сырных экспертов',
-      description: 'Органолептика, экспертиза сыра и независимая оценка квалификации в обновленном формате',
-      icon: '👨‍🏫',
-      cta: 'Участвовать'
-    },
-    {
-      id: 'cheese-pastry',
-      title: '2-й Конкурс «Сыр как десерт/Cheese Pastry»',
-      description: 'Интеграция сыров в профессиональную кондитерскую и хлебопекарную практику',
-      icon: '🍰',
-      cta: 'Подать работу'
-    },
-    {
-      id: 'balance-of-taste',
-      title: '1-й Конкурс «Баланс вкуса 2027»',
-      description: 'Джемы, соусы и мостарда. Гастрономические пары с сырами для сегмента HoReCa',
-      icon: '🍶',
-      cta: 'Зарегистрировать образец'
-    },
-    {
-      id: 'package-design',
-      title: '1-й Конкурс дизайна упаковки сыров',
-      description: 'Оценка эстетических, функциональных и маркетинговых решений в упаковке',
-      icon: '📦',
-      cta: 'Отправить портфолио'
-    },
-    {
-      id: 'young-specialists',
-      title: '1-й Конкурс молодых специалистов «Точка роста»',
-      description: 'Для студентов аграрных вузов. Прямой доступ крупных брендов к будущим технологам',
-      icon: '🚀',
-      cta: 'Зарегистрироваться'
-    },
-    {
-      id: 'premium-salon',
-      title: 'Салон премиальных сыров',
-      description: 'Престижная площадка для демонстрации премиальных российских производителей',
-      icon: '👑',
-      cta: 'Узнать подробнее'
-    }
-  ]
-
   return (
     <>
       {/* Hero Section */}
@@ -69,8 +25,8 @@ export default function Home() {
             ВДНХ, Павильон 322, Сервис.Техноград, Москва
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <button className="button-primary text-base">Зарегистрироваться как участник</button>
-            <button className="button-secondary text-base">Стать экспонентом</button>
+            <Link href="/register?type=professional" className="button-primary text-base">Зарегистрироваться как участник</Link>
+            <Link href="/register?type=producer" className="button-secondary text-base">Стать экспонентом</Link>
           </div>
         </div>
       </section>
@@ -185,7 +141,7 @@ export default function Home() {
               <p className="text-gray-600 mb-4">
                 Встретьте поставщиков, партнеров и лучших специалистов отрасли
               </p>
-              <Link href="#" className="text-gold font-semibold hover:underline">
+              <Link href="/register?type=professional" className="text-gold font-semibold hover:underline">
                 Зарегистрироваться →
               </Link>
             </div>
@@ -195,7 +151,7 @@ export default function Home() {
               <p className="text-gray-600 mb-4">
                 Представьте свой продукт и приз свою продукцию в конкурсах
               </p>
-              <Link href="#" className="text-gold font-semibold hover:underline">
+              <Link href="/register?type=producer" className="text-gold font-semibold hover:underline">
                 Стать экспонентом →
               </Link>
             </div>
@@ -205,7 +161,7 @@ export default function Home() {
               <p className="text-gray-600 mb-4">
                 Конкурс и прямой доступ к крупным работодателям отрасли
               </p>
-              <Link href="#" className="text-gold font-semibold hover:underline">
+              <Link href="/register?type=student" className="text-gold font-semibold hover:underline">
                 Узнать о конкурсе →
               </Link>
             </div>
