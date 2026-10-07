@@ -6,13 +6,17 @@
 <style>
 /* ===== ЦВЕТА БРЕНДА — меняйте только здесь ===== */
 .ce-team {
-  --ce-bg: #15120e;          /* основной фон */
-  --ce-bg-alt: #1d1913;      /* фон чётных секций */
-  --ce-text: #f3ebdc;        /* основной текст */
-  --ce-muted: #b9ad98;       /* второстепенный текст */
-  --ce-accent: #d4a73a;      /* акцент: должности, номера, линии */
-  --ce-photo-bg: #2a241b;    /* фон заглушки фото */
-  --ce-line: rgba(243, 235, 220, 0.14);
+  --ce-black: #0b0b0b;       /* чёрный из логотипа — основной фон */
+  --ce-bordeaux: #7d0e25;    /* бордо из логотипа — фон 2-й и 4-й секции, заглушки фото */
+  --ce-ochre: #cd9229;       /* охра из логотипа — должности, номера, инициалы */
+  --ce-ochre-light: #e4b155; /* охра посветлее — для текста на бордовом фоне (читаемость) */
+  --ce-text: #faf7f2;        /* основной текст */
+  --ce-muted: #b5aea4;       /* описания на чёрном фоне */
+  --ce-muted-alt: #ecd9dc;   /* описания на бордовом фоне */
+
+  --ce-bg: var(--ce-black);
+  --ce-accent: var(--ce-ochre);
+  --ce-line: rgba(250, 247, 242, 0.16);
 }
 /* ================================================ */
 
@@ -42,7 +46,7 @@
   right: -20vw; top: -20vw;
   width: 70vw; height: 70vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 167, 58, 0.16) 0%, rgba(212, 167, 58, 0) 65%);
+  background: radial-gradient(circle, rgba(125, 14, 37, 0.55) 0%, rgba(125, 14, 37, 0) 65%);
   pointer-events: none;
 }
 .ce-team__eyebrow {
@@ -94,12 +98,17 @@
   grid-template-columns: 1fr 1fr;
   border-top: 1px solid var(--ce-line);
 }
-.ce-member:nth-of-type(even) { background: var(--ce-bg-alt); }
-.ce-member:nth-of-type(even) .ce-member__photo { order: 2; }
+.ce-member:nth-of-type(even) {
+  background: var(--ce-bordeaux);
+  --ce-accent: var(--ce-ochre-light);
+  --ce-muted: var(--ce-muted-alt);
+  --ce-line: rgba(250, 247, 242, 0.24);
+}
+.ce-member:nth-of-type(even) .ce-member__photo { order: 2; background-color: var(--ce-black); }
 
 .ce-member__photo {
   position: relative;
-  background-color: var(--ce-photo-bg);
+  background-color: var(--ce-bordeaux);
   background-size: cover;
   background-position: center top;
   min-height: 100%;
@@ -117,8 +126,8 @@
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(96px, 14vw, 200px);
   line-height: 1;
-  color: var(--ce-accent);
-  opacity: .35;
+  color: var(--ce-ochre);
+  opacity: .9;
 }
 .ce-member__hint {
   display: block;
