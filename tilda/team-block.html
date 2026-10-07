@@ -1,36 +1,29 @@
 <!-- Cheese Expo 2027 — страница «Команда». Вставляется целиком в блок T123 (HTML-код) в Tilda. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-
 <style>
 /* ===== ЦВЕТА БРЕНДА — меняйте только здесь ===== */
 .ce-team {
-  --ce-black: #0b0b0b;       /* чёрный из логотипа — основной фон */
-  --ce-bordeaux: #7d0e25;    /* бордо из логотипа — фон 2-й и 4-й секции, заглушки фото */
-  --ce-ochre: #cd9229;       /* охра из логотипа — должности, номера, инициалы */
-  --ce-ochre-light: #e4b155; /* охра посветлее — для текста на бордовом фоне (читаемость) */
-  --ce-text: #faf7f2;        /* основной текст */
-  --ce-muted: #b5aea4;       /* описания на чёрном фоне */
-  --ce-muted-alt: #ecd9dc;   /* описания на бордовом фоне */
-
-  --ce-bg: var(--ce-black);
-  --ce-accent: var(--ce-ochre);
-  --ce-line: rgba(250, 247, 242, 0.16);
+  --ce-ochre: #cd9236;        /* охра — первый экран, полосы карточек, заглушки фото */
+  --ce-ochre-light: #ddb260;  /* светлая охра — фон заглушки фото */
+  --ce-bordeaux: #7d1a25;     /* бордо — имена, номера, линии */
+  --ce-grey: #808080;         /* серый — заглушки фото у 2-го и 4-го */
+  --ce-grey-light: #f6f6f6;   /* светло-серый — фон 2-й и 4-й секции */
+  --ce-white: #ffffff;        /* белый — фон страницы и карточек */
+  --ce-text: #0c0c0c;         /* основной текст */
+  --ce-text-soft: #3a3a3a;    /* описания */
 }
 /* ================================================ */
 
 .ce-team, .ce-team * { box-sizing: border-box; margin: 0; padding: 0; }
 .ce-team {
-  background: var(--ce-bg);
+  background: var(--ce-white);
   color: var(--ce-text);
-  font-family: 'Manrope', Arial, sans-serif;
+  font-family: Tahoma, Verdana, 'Segoe UI', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
 }
 .ce-team a { color: inherit; text-decoration: none; }
 
-/* Hero */
+/* Первый экран */
 .ce-team__hero {
   min-height: 100vh;
   min-height: 100svh;
@@ -38,150 +31,161 @@
   flex-direction: column;
   justify-content: space-between;
   padding: clamp(24px, 5vw, 72px);
-  position: relative;
-}
-.ce-team__hero::after {
-  content: "";
-  position: absolute;
-  right: -20vw; top: -20vw;
-  width: 70vw; height: 70vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(125, 14, 37, 0.55) 0%, rgba(125, 14, 37, 0) 65%);
-  pointer-events: none;
+  background: var(--ce-ochre);
+  border-bottom: 5px solid var(--ce-bordeaux);
 }
 .ce-team__eyebrow {
-  font-size: 13px;
-  letter-spacing: 0.18em;
+  font-size: 14px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ce-accent);
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--ce-text);
 }
 .ce-team__title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(64px, 15vw, 220px);
-  line-height: 0.9;
+  font-weight: 700;
+  font-size: clamp(60px, 13vw, 190px);
+  line-height: 0.95;
   letter-spacing: -0.02em;
+  color: var(--ce-bordeaux);
   margin-top: 4vh;
 }
 .ce-team__lead {
-  max-width: 560px;
-  font-size: clamp(16px, 1.4vw, 20px);
-  line-height: 1.6;
-  color: var(--ce-muted);
-  margin-top: 28px;
+  max-width: 620px;
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.55;
+  color: var(--ce-text);
+  margin-top: 24px;
 }
 .ce-team__index {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--ce-line);
+  gap: 16px;
   margin-top: 48px;
-  position: relative;
-  z-index: 1;
 }
 .ce-team__index a {
   display: block;
-  padding: 20px 16px 0 0;
-  transition: color .25s;
+  height: 100%;
+  padding: 18px 20px;
+  background: var(--ce-white);
+  border-left: 5px solid var(--ce-bordeaux);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(125, 26, 37, 0.15);
+  transition: transform .25s, box-shadow .25s;
 }
-.ce-team__index a:hover { color: var(--ce-accent); }
-.ce-team__index-num { display: block; font-size: 12px; color: var(--ce-accent); letter-spacing: .12em; margin-bottom: 6px; }
-.ce-team__index-name { display: block; font-size: 16px; font-weight: 600; }
-.ce-team__index-role { display: block; font-size: 13px; color: var(--ce-muted); margin-top: 4px; line-height: 1.4; }
+.ce-team__index a:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(125, 26, 37, 0.25); }
+.ce-team__index-num { display: block; font-size: 13px; font-weight: 700; color: var(--ce-bordeaux); margin-bottom: 6px; }
+.ce-team__index-name { display: block; font-size: 17px; font-weight: 700; }
+.ce-team__index-role { display: block; font-size: 14px; color: var(--ce-text-soft); margin-top: 4px; line-height: 1.4; }
 
-/* Member */
+/* Участник */
 .ce-member {
   min-height: 100vh;
   min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: clamp(20px, 4vw, 56px);
+  background: var(--ce-white);
+}
+.ce-member:nth-of-type(even) { background: var(--ce-grey-light); }
+
+.ce-member__card {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  min-height: calc(100vh - 2 * clamp(20px, 4vw, 56px));
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--ce-line);
+  background: var(--ce-white);
+  border-left: 6px solid var(--ce-bordeaux);
+  border-bottom: 5px solid var(--ce-bordeaux);
+  border-radius: 8px;
+  box-shadow: 0 14px 40px rgba(125, 26, 37, 0.14);
+  overflow: hidden;
 }
-.ce-member:nth-of-type(even) {
-  background: var(--ce-bordeaux);
-  --ce-accent: var(--ce-ochre-light);
-  --ce-muted: var(--ce-muted-alt);
-  --ce-line: rgba(250, 247, 242, 0.24);
-}
-.ce-member:nth-of-type(even) .ce-member__photo { order: 2; background-color: var(--ce-black); }
+.ce-member:nth-of-type(even) .ce-member__card { border-left-color: var(--ce-ochre); }
+.ce-member:nth-of-type(even) .ce-member__photo { order: 2; background-color: var(--ce-grey); }
 
 .ce-member__photo {
   position: relative;
-  background-color: var(--ce-bordeaux);
+  background-color: var(--ce-ochre-light);
   background-size: cover;
   background-position: center top;
   min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
-.ce-member__placeholder {
-  text-align: center;
-  color: var(--ce-muted);
-}
+.ce-member__placeholder { text-align: center; }
 .ce-member__initials {
   display: block;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(96px, 14vw, 200px);
+  font-weight: 700;
+  font-size: clamp(88px, 12vw, 180px);
   line-height: 1;
-  color: var(--ce-ochre);
-  opacity: .9;
+  color: var(--ce-bordeaux);
 }
+.ce-member:nth-of-type(even) .ce-member__initials { color: var(--ce-white); }
 .ce-member__hint {
   display: block;
-  margin-top: 16px;
-  font-size: 12px;
-  letter-spacing: .14em;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
   text-transform: uppercase;
+  color: var(--ce-text);
 }
+.ce-member:nth-of-type(even) .ce-member__hint { color: var(--ce-white); }
 .ce-member__photo.has-photo .ce-member__placeholder { display: none; }
-.ce-member__photo::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,.35) 100%);
-  pointer-events: none;
-}
 
 .ce-member__body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(32px, 6vw, 96px);
+  padding: clamp(28px, 5vw, 80px);
 }
 .ce-member__num {
-  font-size: 13px;
-  letter-spacing: .18em;
-  color: var(--ce-accent);
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: var(--ce-bordeaux);
 }
 .ce-member__name {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(44px, 5.5vw, 88px);
-  line-height: 1;
-  margin-top: 24px;
+  font-weight: 700;
+  font-size: clamp(34px, 4.2vw, 64px);
+  line-height: 1.05;
+  color: var(--ce-bordeaux);
+  margin-top: 18px;
 }
 .ce-member__role {
+  display: inline-block;
+  align-self: flex-start;
   font-size: clamp(15px, 1.2vw, 18px);
-  font-weight: 600;
-  color: var(--ce-accent);
-  margin-top: 20px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--ce-line);
-  max-width: 520px;
+  font-weight: 700;
+  color: var(--ce-text);
+  background: var(--ce-ochre-light);
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-top: 22px;
+  max-width: 560px;
+  line-height: 1.4;
+}
+.ce-member__line {
+  width: 100%;
+  max-width: 560px;
+  height: 3px;
+  background: var(--ce-bordeaux);
+  margin-top: 26px;
 }
 .ce-member__text {
   font-size: clamp(15px, 1.1vw, 17px);
   line-height: 1.75;
-  color: var(--ce-muted);
-  margin-top: 28px;
-  max-width: 600px;
+  color: var(--ce-text-soft);
+  margin-top: 24px;
+  max-width: 620px;
 }
 
 /* Появление при прокрутке */
-.ce-team .ce-reveal { opacity: 0; transform: translateY(32px); transition: opacity .9s ease, transform .9s ease; }
+.ce-team .ce-reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
 .ce-team .ce-reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .ce-team .ce-reveal { opacity: 1; transform: none; transition: none; }
@@ -189,14 +193,14 @@
 
 /* Планшет и телефон */
 @media (max-width: 960px) {
-  .ce-team__index { grid-template-columns: 1fr 1fr; gap: 0 16px; }
-  .ce-member { grid-template-columns: 1fr; min-height: 0; }
+  .ce-team__index { grid-template-columns: 1fr 1fr; }
+  .ce-member { min-height: 0; }
+  .ce-member__card { grid-template-columns: 1fr; min-height: 0; }
   .ce-member:nth-of-type(even) .ce-member__photo { order: 0; }
-  .ce-member__photo { min-height: 0; aspect-ratio: 4 / 5; max-height: 80vh; width: 100%; }
+  .ce-member__photo { min-height: 0; aspect-ratio: 4 / 5; max-height: 75vh; width: 100%; }
 }
 @media (max-width: 480px) {
-  .ce-team__index { grid-template-columns: 1fr; }
-  .ce-team__index a { padding: 14px 0; border-bottom: 1px solid var(--ce-line); }
+  .ce-team__index { grid-template-columns: 1fr; gap: 10px; }
   .ce-team__index-role { display: none; }
 }
 </style>
@@ -220,50 +224,62 @@
   <!-- ФОТО: вставьте ссылку на фото в data-photo="" (вертикальное 4:5, от 1200×1500 px) -->
 
   <section class="ce-member" id="ce-grek">
-    <div class="ce-member__photo" data-photo="">
-      <div class="ce-member__placeholder"><span class="ce-member__initials">АГ</span><span class="ce-member__hint">Место для фото</span></div>
-    </div>
-    <div class="ce-member__body">
-      <p class="ce-member__num ce-reveal">01 / 04</p>
-      <h2 class="ce-member__name ce-reveal">Алёна Грек</h2>
-      <p class="ce-member__role ce-reveal">Основатель и продюсер Cheese Expo</p>
-      <p class="ce-member__text ce-reveal">Идеолог и главный организатор Cheese Expo с 2024 года. За три года под её руководством мероприятие прошло путь от специализированной экспозиции в рамках крупных отраслевых выставок до самостоятельной экспертной B2B-платформы, определяющей стандарты сырной индустрии России. Отвечает за стратегическое развитие проекта, формирование партнёрской экосистемы и координацию всех участников, спонсоров и подрядчиков. Инициатор перехода Cheese Expo в закрытый экспертный формат на базе Гастроакадемии STANFOOD by METRO. R&amp;D food tech developer, совмещающий глубокое понимание пищевых технологий с продюсерским видением масштабных отраслевых событий.</p>
+    <div class="ce-member__card">
+      <div class="ce-member__photo" data-photo="">
+        <div class="ce-member__placeholder"><span class="ce-member__initials">АГ</span><span class="ce-member__hint">Место для фото</span></div>
+      </div>
+      <div class="ce-member__body">
+        <p class="ce-member__num ce-reveal">01 / 04</p>
+        <h2 class="ce-member__name ce-reveal">Алёна Грек</h2>
+        <p class="ce-member__role ce-reveal">Основатель и продюсер Cheese Expo</p>
+        <div class="ce-member__line ce-reveal"></div>
+        <p class="ce-member__text ce-reveal">Идеолог и главный организатор Cheese Expo с 2024 года. За три года под её руководством мероприятие прошло путь от специализированной экспозиции в рамках крупных отраслевых выставок до самостоятельной экспертной B2B-платформы, определяющей стандарты сырной индустрии России. Отвечает за стратегическое развитие проекта, формирование партнёрской экосистемы и координацию всех участников, спонсоров и подрядчиков. Инициатор перехода Cheese Expo в закрытый экспертный формат на базе Гастроакадемии STANFOOD by METRO. R&amp;D food tech developer, совмещающий глубокое понимание пищевых технологий с продюсерским видением масштабных отраслевых событий.</p>
+      </div>
     </div>
   </section>
 
   <section class="ce-member" id="ce-bodorev">
-    <div class="ce-member__photo" data-photo="">
-      <div class="ce-member__placeholder"><span class="ce-member__initials">МБ</span><span class="ce-member__hint">Место для фото</span></div>
-    </div>
-    <div class="ce-member__body">
-      <p class="ce-member__num ce-reveal">02 / 04</p>
-      <h2 class="ce-member__name ce-reveal">Михаил Бодорев</h2>
-      <p class="ce-member__role ce-reveal">Научный руководитель конкурсной программы</p>
-      <p class="ce-member__text ce-reveal">Ведущий эксперт в области сенсорного анализа и сенсометрики пищевых продуктов. Кандидат технических наук с более чем 20-летним стажем научно-исследовательской и практической деятельности. Отвечает за методологическую базу всех конкурсов Cheese Expo: разработку дегустационных профилей, калибровку судейских панелей и обеспечение объективности экспертных оценок в соответствии с международными стандартами ISO. Его участие гарантирует, что каждый результат конкурса имеет под собой строгую научную основу и не подлежит сомнению со стороны профессионального сообщества.</p>
+    <div class="ce-member__card">
+      <div class="ce-member__photo" data-photo="">
+        <div class="ce-member__placeholder"><span class="ce-member__initials">МБ</span><span class="ce-member__hint">Место для фото</span></div>
+      </div>
+      <div class="ce-member__body">
+        <p class="ce-member__num ce-reveal">02 / 04</p>
+        <h2 class="ce-member__name ce-reveal">Михаил Бодорев</h2>
+        <p class="ce-member__role ce-reveal">Научный руководитель конкурсной программы</p>
+        <div class="ce-member__line ce-reveal"></div>
+        <p class="ce-member__text ce-reveal">Ведущий эксперт в области сенсорного анализа и сенсометрики пищевых продуктов. Кандидат технических наук с более чем 20-летним стажем научно-исследовательской и практической деятельности. Отвечает за методологическую базу всех конкурсов Cheese Expo: разработку дегустационных профилей, калибровку судейских панелей и обеспечение объективности экспертных оценок в соответствии с международными стандартами ISO. Его участие гарантирует, что каждый результат конкурса имеет под собой строгую научную основу и не подлежит сомнению со стороны профессионального сообщества.</p>
+      </div>
     </div>
   </section>
 
   <section class="ce-member" id="ce-plakhotnyuk">
-    <div class="ce-member__photo" data-photo="">
-      <div class="ce-member__placeholder"><span class="ce-member__initials">ВП</span><span class="ce-member__hint">Место для фото</span></div>
-    </div>
-    <div class="ce-member__body">
-      <p class="ce-member__num ce-reveal">03 / 04</p>
-      <h2 class="ce-member__name ce-reveal">Владимир Плахотнюк</h2>
-      <p class="ce-member__role ce-reveal">Технологический директор конкурсной программы</p>
-      <p class="ce-member__text ce-reveal">Практикующий технолог молочного производства и бренд-сыровар с опытом запуска сыроваренных производств с нуля. Глубокая экспертиза в сегменте мягких сыров, паста филата и выдержанных сортов. Постоянный судья российских и международных сырных конкурсов. В команде Cheese Expo отвечает за технологическую достоверность конкурсных процедур, оценку производственных решений участников и связь академических критериев с реальными задачами действующих сыроварен. Представляет в жюри голос практиков, которые ежедневно работают с продуктом.</p>
+    <div class="ce-member__card">
+      <div class="ce-member__photo" data-photo="">
+        <div class="ce-member__placeholder"><span class="ce-member__initials">ВП</span><span class="ce-member__hint">Место для фото</span></div>
+      </div>
+      <div class="ce-member__body">
+        <p class="ce-member__num ce-reveal">03 / 04</p>
+        <h2 class="ce-member__name ce-reveal">Владимир Плахотнюк</h2>
+        <p class="ce-member__role ce-reveal">Технологический директор конкурсной программы</p>
+        <div class="ce-member__line ce-reveal"></div>
+        <p class="ce-member__text ce-reveal">Практикующий технолог молочного производства и бренд-сыровар с опытом запуска сыроваренных производств с нуля. Глубокая экспертиза в сегменте мягких сыров, паста филата и выдержанных сортов. Постоянный судья российских и международных сырных конкурсов. В команде Cheese Expo отвечает за технологическую достоверность конкурсных процедур, оценку производственных решений участников и связь академических критериев с реальными задачами действующих сыроварен. Представляет в жюри голос практиков, которые ежедневно работают с продуктом.</p>
+      </div>
     </div>
   </section>
 
   <section class="ce-member" id="ce-ustinova">
-    <div class="ce-member__photo" data-photo="">
-      <div class="ce-member__placeholder"><span class="ce-member__initials">ЕУ</span><span class="ce-member__hint">Место для фото</span></div>
-    </div>
-    <div class="ce-member__body">
-      <p class="ce-member__num ce-reveal">04 / 04</p>
-      <h2 class="ce-member__name ce-reveal">Екатерина Устинова</h2>
-      <p class="ce-member__role ce-reveal">Руководитель направления экспертизы и качества</p>
-      <p class="ce-member__text ce-reveal">Основатель журнала «Сырный гид», аттестованный эксперт-дегустатор, издатель издания о качестве российских сыров. Образование: Поварская школа RAGOUT, стажировки в «Дом 12» (Илья Шалев) и кафе Ragout (Москва), выпускница Школы вина «Энотрия» и ВНИИ сыроделия и маслоделия (Углич). Судья российских и международных сырных конкурсов. В команде Cheese Expo отвечает за стандарты качества конкурсных процедур, оценку аутентичности сырного ингредиента и его взаимодействия с другими компонентами. Обеспечивает соответствие оценок профессиональным стандартам отрасли и медиа-прозрачность результатов.</p>
+    <div class="ce-member__card">
+      <div class="ce-member__photo" data-photo="">
+        <div class="ce-member__placeholder"><span class="ce-member__initials">ЕУ</span><span class="ce-member__hint">Место для фото</span></div>
+      </div>
+      <div class="ce-member__body">
+        <p class="ce-member__num ce-reveal">04 / 04</p>
+        <h2 class="ce-member__name ce-reveal">Екатерина Устинова</h2>
+        <p class="ce-member__role ce-reveal">Руководитель направления экспертизы и качества</p>
+        <div class="ce-member__line ce-reveal"></div>
+        <p class="ce-member__text ce-reveal">Основатель журнала «Сырный гид», аттестованный эксперт-дегустатор, издатель издания о качестве российских сыров. Образование: Поварская школа RAGOUT, стажировки в «Дом 12» (Илья Шалев) и кафе Ragout (Москва), выпускница Школы вина «Энотрия» и ВНИИ сыроделия и маслоделия (Углич). Судья российских и международных сырных конкурсов. В команде Cheese Expo отвечает за стандарты качества конкурсных процедур, оценку аутентичности сырного ингредиента и его взаимодействия с другими компонентами. Обеспечивает соответствие оценок профессиональным стандартам отрасли и медиа-прозрачность результатов.</p>
+      </div>
     </div>
   </section>
 
