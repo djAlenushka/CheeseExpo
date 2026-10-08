@@ -116,6 +116,14 @@
   align-items: center;
   justify-content: center;
 }
+.ce-member__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
 .ce-member__placeholder { text-align: center; }
 .ce-member__initials {
   display: block;
@@ -225,7 +233,7 @@
 
   <section class="ce-member" id="ce-grek">
     <div class="ce-member__card">
-      <div class="ce-member__photo" data-photo="">
+      <div class="ce-member__photo" data-photo="" data-alt="Алёна Грек, основатель и продюсер Cheese Expo 2027">
         <div class="ce-member__placeholder"><span class="ce-member__initials">АГ</span><span class="ce-member__hint">Место для фото</span></div>
       </div>
       <div class="ce-member__body">
@@ -240,7 +248,7 @@
 
   <section class="ce-member" id="ce-bodorev">
     <div class="ce-member__card">
-      <div class="ce-member__photo" data-photo="">
+      <div class="ce-member__photo" data-photo="" data-alt="Михаил Бодорев, научный руководитель конкурсной программы Cheese Expo">
         <div class="ce-member__placeholder"><span class="ce-member__initials">МБ</span><span class="ce-member__hint">Место для фото</span></div>
       </div>
       <div class="ce-member__body">
@@ -255,7 +263,7 @@
 
   <section class="ce-member" id="ce-plakhotnyuk">
     <div class="ce-member__card">
-      <div class="ce-member__photo" data-photo="">
+      <div class="ce-member__photo" data-photo="" data-alt="Владимир Плахотнюк, технологический директор конкурсной программы Cheese Expo">
         <div class="ce-member__placeholder"><span class="ce-member__initials">ВП</span><span class="ce-member__hint">Место для фото</span></div>
       </div>
       <div class="ce-member__body">
@@ -270,7 +278,7 @@
 
   <section class="ce-member" id="ce-ustinova">
     <div class="ce-member__card">
-      <div class="ce-member__photo" data-photo="">
+      <div class="ce-member__photo" data-photo="" data-alt="Екатерина Устинова, руководитель направления экспертизы и качества Cheese Expo">
         <div class="ce-member__placeholder"><span class="ce-member__initials">ЕУ</span><span class="ce-member__hint">Место для фото</span></div>
       </div>
       <div class="ce-member__body">
@@ -292,10 +300,14 @@
 
   root.querySelectorAll('.ce-member__photo').forEach(function (el) {
     var src = (el.getAttribute('data-photo') || '').trim();
-    if (src) {
-      el.style.backgroundImage = 'url("' + src.replace(/"/g, '%22') + '")';
-      el.classList.add('has-photo');
-    }
+    if (!src) return;
+    var img = document.createElement('img');
+    img.src = src;
+    img.alt = el.getAttribute('data-alt') || '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    el.appendChild(img);
+    el.classList.add('has-photo');
   });
 
   var items = root.querySelectorAll('.ce-reveal');
